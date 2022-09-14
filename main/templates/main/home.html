@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+
+
+    <div class="container-fluid" id="cover">  
+      <!-- hx-get will pull students data from database and wil be rendered on the #cover div -->
+     <div id="student-list" hx-get="{% url 'student-list' %}" 
+      hx-trigger="every 1s" swap="innerHTML">
+    
+      <!-- this is a component we bring here using include-->
+        {% include 'main/students.html' %}
+     </div>
+</div>
+
+{% endblock content %} 

@@ -1,0 +1,43 @@
+
+{% load crispy_forms_tags %}
+<div class="container-fluid" >
+    <div class="row" >
+<div class="col-xs-9">
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+
+<button type="submit" hx-post="{% url 'update-student-store' studentobject.id %}" 
+hx-swap='innerHTML'  
+hx-target="#cover"  
+class="btn btn-success">
+Submit   
+</button>
+
+
+
+   <button hx-get="{% url 'student-list' %}" 
+                hx-swap='innerHTML' 
+                hx-target="#cover"  
+                class="btn btn-info">
+                return      
+        </button>
+
+
+
+<button
+hx-get="{% url 'student-detail' studentobject.id %}" 
+hx-swap='innerHTML'
+hx-target="#cover"
+ class="btn btn-info">
+
+return To profile
+
+</button>
+</div>
+<div class="col-xs-6"></div>
+</div>
+</div>
+</form> 

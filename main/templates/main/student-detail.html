@@ -1,0 +1,54 @@
+
+{% block content %}
+
+{% include "main/messages.html" %}
+  <div class="container" id="student-detail">
+
+    <h2>  </h2>
+
+    <form method="POST">
+        {% csrf_token %}
+  <fieldset class="form-group">
+ <div class="col-xs-6" id="update">
+     <h3> R{{ studentobject.student_regnumber  }}Z</h3>
+     <h4>{{ studentobject.student_firstname|capfirst }} {{ studentobject.student_lastname|capfirst }}</h4>
+     <h5> {{ studentobject.student_email  }}</h5>
+     <h6> {{ studentobject.student_sex  }}</h6>
+     <p> {{ studentobject.date_created  }}</p>
+
+  
+
+
+       <div class="form-group">
+        <button  hx-get="{% url 'update-student' studentobject.id %}" 
+                 hx-swap='innerHTML'
+                 hx-target="#update"
+                class="btn btn-primary">
+     
+          Edit
+        </button>
+        <button hx-get="{% url 'student-list' %}" 
+                hx-swap='innerHTML' 
+                hx-target="#cover"  
+                class="btn btn-info">
+                return      
+        </button>
+
+
+       </div>
+       </fieldset>
+    
+ </div>
+    
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+

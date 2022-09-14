@@ -1,0 +1,31 @@
+{% load crispy_forms_tags %}
+<form method="Post" hx-post="{% url 'add-student' %}">
+    {% csrf_token %}
+ {{ form.student_firstname|as_crispy_field }}
+ {{ form.student_lastname|as_crispy_field }}
+ 
+ </div>
+ 
+    {{ form.student_email|as_crispy_field }}
+    {{ form.student_sex|as_crispy_field }}
+ </div>
+ 
+ </div>
+ 
+    <button 
+    type="submit" 
+    hx-post="{% url 'add-student' %}"
+    hx-target="#cover"
+     class="btn btn-success">Submit</button>
+ 
+     <button hx-get="{% url 'student-list' %}" 
+                hx-swap='innerHTML' 
+                hx-target="#cover"  
+                class="btn btn-info">
+                return      
+        </button>
+      
+    
+   
+ 
+ </form>

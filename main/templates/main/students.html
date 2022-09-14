@@ -1,0 +1,153 @@
+
+ {% include "main/messages.html" %}
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        
+        <div class="card-body">
+          <h5 class="card-title">All Students 
+          
+        </h5>
+
+        <button hx-get="{% url 'form' %}" 
+        hx-swap='innerHTML'  
+        hx-target="#cover"
+        class="btn btn-info">
+        Add Student   
+</button>
+
+
+        </button>
+          <div class="table-responsive">
+         
+           <table class="table table-striped">
+              <thead>
+                <tr>
+                 
+                  <th scope="col">Name</th>
+             
+                  <th scope="col">Last name</th>
+                  <th scope="col">Email</th>
+            
+                  <th scope="col">Reg Number</th>
+                  <th scope="col">Sex</th>
+                  <th scope="col">Date Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+           
+                {% for student in students %}
+                  
+             
+                <tr>
+                
+                 
+                  <th >{{ student.student_firstname }}</th>
+                  
+                  <th >{{ student.student_lastname }}</th>
+                    <th >{{ student.student_email }}</th>
+                  
+                  <th >{{ student.student_regnumber }}</th>
+                  <th >{{ student.student_sex }}</th>
+                  <th >{{ student.date_created }}</th>
+                
+             
+              
+             
+            
+               
+           
+                  
+                  
+                  
+                      <td>
+                       
+                         
+                      
+                             
+                          
+                            
+                           
+                         
+                      
+                            
+                        
+                        <button
+                        hx-get="{% url 'student-detail' student.id %}" 
+                        hx-swap='innerHTML'
+                        hx-target="#cover"
+                         class="btn btn-info">
+                       
+                        View
+                        </a>
+                      </button>
+                      <button  hx-get="{% url 'update-student' student.id %}" 
+                      hx-swap='innerHTML'
+                      hx-target="#cover"
+                     class="btn btn-primary">
+          
+               Edit
+             </button>
+                            <button 
+                            hx-delete="{% url 'delete-student' student.id %}" 
+                            hx-target="#student-list" 
+                            class="btn btn-danger"	
+                            hx-confirm="Are you sure you wish to delete?">
+                            delete</button>
+                        
+                           
+                         
+                      </td>
+                    
+
+                </tr>
+            
+                {% endfor %}
+              </tbody>
+            </table>
+         
+            <br>
+  
+<!-- END Pagination -->
+            
+            <hr>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+          {% if is_paginated %}
+          
+                {% if page_obj.has_previous %}
+                 <li class="page-item disabled"> <a class="btn btn-outline-secondary mb-4"  href="?page=1">First </a></li>
+                 <li class="page-item disabled"> <a class="btn btn-outline-secondary mb-4"  href="?page={{ page_obj.previous_page_number}}">Previous </a></li>
+                {% endif %}
+          
+                {%  for num in page_obj.paginator.page_range  %}
+          
+                  {% if page_obj.number == num %}
+          
+                  <li class="page-item disabled">  <a class="btn btn-outline-info mb-4"  href="?page={{ num }}">{{ num }} </a></li>
+          
+                  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          
+                      <li class="page-item disabled"> <a class="btn btn-outline-info mb-4"  href="?page={{ num }}">{{ num }} </a></li>
+                   {% endif %}
+          
+                  {% endfor%}
+          
+            {% if page_obj.has_next %}
+               <li class="page-item disabled">   <a class="btn btn-outline-info mb-4"  href="?page={{ page_obj.next_page_number }}">Next </a></li>
+                   <li class="page-item disabled">   <a class="btn btn-outline-info mb-4"  href="?page={{ page_obj.paginator.num_pages }}">Last </a></li>
+                {% endif %}
+                {% endif %}
+          
+          
+            
+            </ul>
+          </nav>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>  
+  
