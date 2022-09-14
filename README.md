@@ -1,0 +1,2 @@
+# StudentsRegistrationapp
+Django + Htmx
