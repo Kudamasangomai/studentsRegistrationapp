@@ -4,34 +4,25 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import studentform
 from .models import students
+from django.db.models import Q
 
 
 # Create your views here.
 def home(request):
-    context = {
-	'form': studentform(),
-	'students': students.objects.all()
-
-	}
+    context = { 'form': studentform(),'students': students.objects.all()}
     return render(request, 'main/home.html', context)
 
 
 def form(request):
-
-    context = {
-	'form': studentform(),
-	}
+    context = {'form': studentform(),}
     return render(request, 'main/form.html', context)
 
-def update_student(request,pk):
 
+
+def update_student(request,pk):
     studentobject = students.objects.get(id=pk)
     form = studentform(instance=studentobject)
-    context = {
-        'form': form,
-        'studentobject': studentobject,
-
-    }
+    context = {'form': form, 'studentobject': studentobject,}
     return render(request, 'main/update-student.html', context)
 
 
@@ -45,8 +36,8 @@ def update_student_store(request, pk):
             form.save()
             messages.success(request, f' Student  succesfully Updated')
             return redirect('student-detail', pk=studentobject.id)
-        form = studentform(instance=studentobject)
-        return render(request, 'main/update-student.html', {'form':form})
+        context = {'form': form }
+        return render(request, 'main/form.html', context)
         
      
 
@@ -85,4 +76,20 @@ def delete_student(request,pk):
     studentobj.delete()
     studentslist = students.objects.all()
     messages.success(request,f' Student  succesfully Deleted')
+
+
+def searched_student(request):
+	if request.method == 'POST':
+		searchedq = request.POST.get('searchedstudent')
+		
+		
+					
+    
+		searchedstudent = students.objects.filter(
+			Q(student_firstname__contains = searchedq) |
+			Q(student_lastname__contains = searchedq) 
+			)
+		return render(request,'main/searched_students.html',{'searchedstudent':searchedstudent})
+	else:
+		return render(request,'library/books.html')
 
