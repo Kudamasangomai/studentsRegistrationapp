@@ -16,7 +16,7 @@
      <h6> {{ studentobject.student_sex  }}</h6>
      <p> {{ studentobject.date_created  }}</p>
 
-  
+    like : {{ likes }} | dislikes : {{  dislikes }}
 
 
        <div class="form-group">
@@ -27,14 +27,34 @@
      
           Edit
         </button>
-        <button hx-get="{% url 'student-list' %}" 
+        <button hx-get="{% url 'home' %}" 
                 hx-swap='innerHTML' 
-                hx-target="#cover"  
+                hx-target="#body"  
                 class="btn btn-info">
                 return      
         </button>
-
-
+        
+       {% if likes > 0 %}
+       <form method="Post" hx-post="{% url 'downvote' studentobject.id %}">
+        {% csrf_token %}
+     
+      <button type="submit"  hx-post="{% url 'downvote' studentobject.id %}"
+      hx-swap='innerHTML'  
+      hx-target="#cover"  
+      class="btn btn-danger" 
+      >downvote</button>
+      {% else %}
+        <form method="Post" hx-post="{% url 'vote' studentobject.id %}">
+            {% csrf_token %}
+         
+          <button type="submit"  hx-post="{% url 'vote' studentobject.id %}"
+          hx-swap='innerHTML'  
+          hx-target="#cover"  
+          class="btn btn-success" 
+          >upvote</button>
+      
+      </form>
+      {% endif %}
        </div>
        </fieldset>
     
@@ -44,10 +64,6 @@
   </div>
 </div>
 {% endblock content %}
-
-
-
-
 
 
 

@@ -3,23 +3,26 @@
 
   <div class="row">
     <div class="col-lg-12">
-      <div class="card">
-        
+      <div class="card">        
         <div class="card-body">
-          <h5 class="card-title">All Students</h5>
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-8"><button hx-get="{% url 'form' %}" 
-    hx-swap='innerHTML'  
-    hx-target="#cover"
-    class="btn btn-info">
-    Add Student   
-  </button></div>
-  <div class="col-xs-6 col-md-4">
-    <input type="text" hx-post="{% url 'add-student' %}" class="form-control"/>
-  </div>
-</div><br/>
-          <div class="table-responsive">
-         
+
+          
+                      <h5 class="card-title">All Students</h5>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-8"><button hx-get="{% url 'form' %}" 
+                          hx-swap='innerHTML'  
+                          hx-target="#cover"
+                          class="btn btn-info">
+                          Add Student   
+                        </button></div>
+                        <div class="col-xs-6 col-md-4">
+
+                          {% include 'main/search_input.html' %}
+                        </div>
+                      </div>
+<br/>
+          <div class="table-responsive" id="results" >
+            {% if students %}
            <table class="table table-striped">
               <thead>
                 <tr>
@@ -36,6 +39,11 @@
                 </tr>
               </thead>
               <tbody>
+                
+             
+                  
+               
+                  
            
                 {% for student in students %}
                   
@@ -43,14 +51,14 @@
                 <tr>
                 
                  
-                  <th >{{ student.student_firstname }}</th>
+                  <td >{{ student.student_firstname }}</td>
                   
-                  <th >{{ student.student_lastname }}</th>
-                    <th >{{ student.student_email }}</th>
+                  <td >{{ student.student_lastname }}</td>
+                    <th >{{ student.student_email }}</td>
                   
-                  <th >{{ student.student_regnumber }}</th>
-                  <th >{{ student.student_sex }}</th>
-                  <th >{{ student.date_created }}</th>
+                  <td >{{ student.student_regnumber }}</td>
+                  <td >{{ student.student_sex }}</td>
+                  <td >{{ student.date_created }}</td>
                 
              
               
@@ -102,11 +110,19 @@
                     
 
                 </tr>
+              
             
                 {% endfor %}
+              
               </tbody>
             </table>
-         
+            {% else %}
+            <div  class="alert alert-warning" role="alert">
+               <center> No Results</center>
+            
+            </div>
+
+           {% endif %}
             <br>
   
 <!-- END Pagination -->

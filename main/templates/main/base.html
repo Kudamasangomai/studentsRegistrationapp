@@ -6,17 +6,17 @@
   
    
     <title>Htmx Django</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/htmx.org@1.8.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
     <link href="{% static 'main.css' %}" rel="stylesheet"/>
     <script src="{% static 'htmx.min.js' %}"></script>
 
 </head>
 
-<body>
+<body id="body">
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Htmx Django</a>
@@ -53,6 +53,7 @@
 
   
     </script>
+     <script src="{% static 'alpine.js' %}"></script>
 </body>
 
 </html> 

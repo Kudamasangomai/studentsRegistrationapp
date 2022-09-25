@@ -1,0 +1,16 @@
+
+
+ {% csrf_token %}
+    <input 
+    
+    type="text" 
+    hx-post="{% url 'search-student' %}" 
+    class="form-control"
+    hx-target='#results'
+    hx-swap="innerHTML"
+    hx-select-oob="#results"
+    hx-trigger="keyup changed delay:500ms"
+    name="searchedstudent"
+    placeholder="Search Student..."    
+    />
+</form>

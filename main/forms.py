@@ -1,6 +1,4 @@
-from ast import pattern
-import numbers
-from .models import students
+from .models import students,votes
 from django import forms
 
 
@@ -12,9 +10,11 @@ class studentform(forms.ModelForm):
         widget=forms.TextInput(
         attrs={'class':'form-control' , 
                'autocomplete': 'off',
+               'number':'false',
                'pattern':'[A-Za-z]',
                'title':'Enter Characters Only'}),
-               min_length=3,            
+               min_length=3,    
+              
                
                )
 
@@ -30,5 +30,11 @@ class studentform(forms.ModelForm):
         fields = '__all__'
         exclude = ['student_regnumber','date_created']
 
+
+      
+
+class votesform(forms.ModelForm):
+    class  Meta:
+        model = votes
+        fields = '__all__'
     
-        

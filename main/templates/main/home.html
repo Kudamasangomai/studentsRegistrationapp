@@ -6,14 +6,14 @@
 
 
 
-
-    <div class="container-fluid" id="cover">  
-      <!-- hx-get will pull students data from database and wil be rendered on the #cover div -->
+ 
+<div class="container-fluid" id="cover">  
+ 
       <!-- <div id="student-list" hx-get="url 'student-list'"hx-trigger="every 1s" swap="innerHTML"> -->
-     <div id="student-list" 
->
+       
+          <div id="student-list">
     
-      <!-- this is a component we bring here using include-->
+  
         {% include 'main/students.html' %}
      </div>
 </div>
