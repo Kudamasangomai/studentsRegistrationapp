@@ -9,33 +9,33 @@
     {{ form|crispy }}
     
 
-<button type="submit" hx-post="{% url 'update-student-store' studentobject.id %}" 
-hx-swap='innerHTML'  
-hx-target="#cover"  
-class="btn btn-success">
-Submit   
-</button>
+            <button type="submit" hx-post="{% url 'update-student-store' studentobject.id %}" 
+            hx-swap='innerHTML'  
+            hx-target="#cover"  
+            class="btn btn-success">
+            Submit   
+            </button>
 
 
 
-   <button hx-get="{% url 'home' %}" 
-                hx-swap='innerHTML' 
-                hx-target="#body"  
+            <button hx-get="{% url 'home' %}" 
+                            hx-swap='innerHTML' 
+                            hx-target="#body"  
+                            class="btn btn-info">
+                            return      
+            </button>
+
+
+
+                <button
+                hx-get="{% url 'student-detail' studentobject.id %}" 
+                hx-swap='innerHTML'
+                hx-target="#cover"
                 class="btn btn-info">
-                return      
-        </button>
 
+                return To profile
 
-
-<button
-hx-get="{% url 'student-detail' studentobject.id %}" 
-hx-swap='innerHTML'
-hx-target="#cover"
- class="btn btn-info">
-
-return To profile
-
-</button>
+                </button>
 </div>
 <div class="col-xs-6"></div>
 </div>

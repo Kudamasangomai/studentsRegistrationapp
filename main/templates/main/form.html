@@ -1,4 +1,6 @@
 {% load crispy_forms_tags %}
+
+
 <div class="container-fluid" >
    <div class="row" >
 <div class="col-xs-12 col-sm-6 col-md-6">
@@ -8,14 +10,11 @@
       {{ form.student_lastname|as_crispy_field }}
       {{ form.student_email|as_crispy_field }}
       {{ form.student_sex|as_crispy_field }}
-      
-
- 
     <button 
     type="submit" 
     hx-post="{% url 'add-student' %}"
-    hx-swap='innerHTML' 
-    hx-target="#body"   
+    hx-swap="innerHtml" 
+    hx-target="#cover"  
    class="btn btn-success">Submit</button>
   
      <button hx-get="{% url 'home' %}" 
@@ -23,11 +22,7 @@
                 hx-target="#body"   
                 class="btn btn-info">
                 return      
-        </button>
-      
-   
- 
- </form>
+        </button> </form>
 </div>
    </div>
 </div>

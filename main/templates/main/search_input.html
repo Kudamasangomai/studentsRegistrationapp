@@ -1,5 +1,7 @@
 
 
+
+
  {% csrf_token %}
     <input 
     
@@ -9,8 +11,9 @@
     hx-target='#results'
     hx-swap="innerHTML"
     hx-select-oob="#results"
-    hx-trigger="keyup changed delay:500ms"
+    hx-trigger="keyup changed delay:600ms"
     name="searchedstudent"
-    placeholder="Search Student..."    
+    placeholder="Search Student..."  
+    hx-indicator=".htmx-indicator"  
     />
 </form>

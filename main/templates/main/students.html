@@ -7,27 +7,40 @@
         <div class="card-body">
 
           
-                      <h5 class="card-title">All Students</h5>
+                      <h5 class="card-title">All Students 
+                        
+                       
+                           </h5>
                       <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-8"><button hx-get="{% url 'form' %}" 
                           hx-swap='innerHTML'  
                           hx-target="#cover"
                           class="btn btn-info">
                           Add Student   
-                        </button></div>
+                        </button>
+                       Total Students =  {{ students.count }}
+                      </div>
                         <div class="col-xs-6 col-md-4">
 
                           {% include 'main/search_input.html' %}
+                          
                         </div>
                       </div>
 <br/>
+    
+      <span class="htmx-indicator" style="margin-left: 40%;">
+       
+      Searching for your record.... 
+  </span>
+
           <div class="table-responsive" id="results" >
+           
             {% if students %}
            <table class="table table-striped">
               <thead>
                 <tr>
                  
-                  <th scope="col">Name</th>
+                  <th scope="col">Name </th>
              
                   <th scope="col">Last name</th>
                   <th scope="col">Email</th>

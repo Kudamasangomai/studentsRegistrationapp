@@ -11,7 +11,13 @@ from .models import students,votes
 def home(request):
     context = {'students': students.objects.all()}
     return render(request, 'main/home.html', context)
-
+    
+#canbeused with  pagination
+# class home(ListView):
+#     model = students
+#     template_name = "main/home.html"
+#     paginate_by= 3
+#     context_object_name = 'students'
 
 def form(request):
     context = {'form': studentform(), }
@@ -21,11 +27,11 @@ def form(request):
 class ListStudents(ListView):
     model = students
     template_name = "main/students.html"
-    paginate_by=5
+    paginate_by= 5
     context_object_name = 'students'
 
 
-@require_http_methods(['POST'])
+#@require_http_methods(['POST'])
 def add_student(request):
 
     if request.method == 'POST':
@@ -34,7 +40,7 @@ def add_student(request):
             form.save()
             messages.success(request, f' Student  succesfully Added')
             studentslist = students.objects.all()
-            return render(request, 'main/home.html', {'students': studentslist})
+            return render(request, 'main/students.html', {'students': studentslist})
         context = {'form': form}
         return render(request, 'main/form.html', context)
 
@@ -67,7 +73,7 @@ def update_student_store(request, pk):
         context = {'form': form}
         return render(request, 'main/form.html', context)
 
-
+#still works if you remove these http methods
 @require_http_methods(['DELETE'])
 def delete_student(request, pk):
     studentobj = students.objects.get(id=pk)

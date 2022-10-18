@@ -1,13 +1,12 @@
-
-from unicodedata import name
 from django.urls import path
 from . import views
-from .views import (ListStudents, searched_student)
+from .views import (ListStudents,home)
 
 
 urlpatterns = [
   
   	path('',views.home,name="home"),
+	#path('',home.as_view(),name="home"),
 
 	#htmx urls
 	path('add_student',views.add_student,name="add-student"),
