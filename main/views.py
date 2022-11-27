@@ -11,13 +11,6 @@ from .models import students,votes
 def home(request):
     context = {'students': students.objects.all()}
     return render(request, 'main/home.html', context)
-    
-#canbeused with  pagination
-# class home(ListView):
-#     model = students
-#     template_name = "main/home.html"
-#     paginate_by= 3
-#     context_object_name = 'students'
 
 def form(request):
     context = {'form': studentform(), }
