@@ -87,37 +87,40 @@
                          
                       
                              
-                          
+                          <div x-data="{ open: false }">
                             
-                           
-                         
-                      
-                            
-                        
                         <button
+
+                        x-show="!open" 
                         hx-get="{% url 'student-detail' student.id %}" 
                         hx-swap='innerHTML'
                         hx-target="#cover"
-                         class="btn btn-info">
+                        class="btn btn-info">
                        
                         View
                         </a>
-                      </button>
-                      <button  hx-get="{% url 'update-student' student.id %}" 
-                      hx-swap='innerHTML'
-                      hx-target="#cover"
-                     class="btn btn-primary">
-          
-               Edit
-             </button>
+                          </button>
+                          <button
+                          x-show="!open"  
+                          hx-get="{% url 'update-student' student.id %}" 
+                          hx-swap='innerHTML'
+                          hx-target="#cover"
+                          class="btn btn-primary">Edit</button>
+
+                          <button
+                           x-on:click="open = !open" 
+                           x-text="open ? 'Cancel' :'Delete' " 
+                           x-bind:class="open ? 'btn btn-warning' : 'btn btn-danger' ">
+                           </button>
+
                             <button 
+                            x-show="open"
                             hx-delete="{% url 'delete-student' student.id %}" 
                             hx-target="#student-list" 
-                            class="btn btn-danger"	
-                            hx-confirm="Are you sure you wish to delete?">
-                            delete</button>
+                            class="btn btn-danger">
+                            Yes Delete</button>
                         
-                           
+                          </div>
                          
                       </td>
                     

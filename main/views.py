@@ -1,5 +1,5 @@
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponse, render, redirect
 from django.views.generic import ListView
 from django.contrib import messages
 from .forms import studentform,votesform
@@ -27,7 +27,7 @@ def form(request):
 class ListStudents(ListView):
     model = students
     template_name = "main/students.html"
-    paginate_by= 5
+    paginate_by = 5
     context_object_name = 'students'
 
 
@@ -81,6 +81,11 @@ def delete_student(request, pk):
     studentslist = students.objects.all()
     messages.success(request, f' Student  succesfully Deleted')
     return render(request, 'main/students.html', {'students': studentslist})
+
+
+def delete_stud(request,pk):
+    deletestud = students.objects.get(id=pk)
+    return render(request, 'main/action.html', {'deletestud': deletestud})
 
 
 def searched_student(request):
